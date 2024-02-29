@@ -1,24 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Header from './elements/Header';
+import Window from './elements/Window';
 
 function App() {
+  const headerElements = ["element1", "element2", "element3"]
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <div className="star"></div> */}
+      {/* -<Header items={headerElements} /> */}
+      <Window />
+      <Window />
     </div>
   );
 }

@@ -1,0 +1,47 @@
+.header {
+  position: relative;
+  display: flex;
+  height: 5rem;
+  width: 100vw;
+  /* background-color: black; */
+  justify-content: center;
+  align-items: center;
+}
+
+.menuElement {
+  z-index: 1;
+  margin: 20px;
+  background-color: greenyellow;
+  padding: 0 1rem 0 1rem;
+  border-radius: 50% 20%;
+}
+
+.menuElement:hover {
+  visibility: hidden;
+}
+
+.wave1 {
+  position: absolute;
+  top: 124px;
+  left: 0;
+  width: 100%;
+  height: fit-content;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.wave1 svg {
+  position: relative;
+  display: block;
+  width: calc(130% + 1.3px);
+  transform: translateX(-1%);
+  height: 130px;
+}
+
+.shape-fill {
+  fill: none;
+}
+
+#wave2 {
+  visibility: hidden;
+}
