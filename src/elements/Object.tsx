@@ -1,5 +1,5 @@
-import React, { MouseEvent, useState } from "react";
-import { useRef, useEffect } from "react";
+import React, { MouseEvent, useEffect, useRef, useState } from "react";
+
 
 interface props {
 }
@@ -15,10 +15,19 @@ function Object() {
     direction: vector
   })
 
-  let reference = React.createRef()
+  let reference = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    (reference.current as HTMLDivElement).addEventListener('mouseenter', hover as any)
+    return () => {
+      (reference.current as HTMLDivElement).removeEventListener('mouseenter', hover as any)
+    }
+  }, [state])
+
+
 
   requestAnimationFrame(() => {
-    console.log(reference.current)
+    // console.log(reference.current)
     let x = state.position.x + .5 * state.direction.x
     let y = state.position.y + .5 * state.direction.y
 
@@ -38,30 +47,33 @@ function Object() {
 
   const hover = function (e: MouseEvent): void {
     let element = reference.current as HTMLDivElement
+    console.log(element)
     element.classList.add("bigger")
     vector.x = state.direction.x
     vector.y = state.direction.y
-
+    //element.removeEventListener("mouseenter", hover as any)
     setState({
       position: { x: state.position.x, y: state.position.y },
       direction: { x: 0, y: 0 }
     })
+    console.log(state);
+
+    //element.addEventListener("mouseleave", resume as any)
   }
 
   const resume = function (e: MouseEvent): void {
     let element = reference.current as HTMLDivElement
-    console.log(element)
-    element.classList.remove("bigger")
-
+    console.log(reference)
     setState({
       position: { x: state.position.x, y: state.position.y },
       direction: vector
     })
+
   }
 
 
   return (
-    <div ref={reference as React.RefObject<HTMLDivElement>} className="object" onMouseEnter={hover} onMouseLeave={resume} style={{ left: state.position.x + "%", top: state.position.y + "%" }}></div>
+    <div ref={reference} className="object" style={{ left: state.position.x + "%", top: state.position.y + "%" }}></div>
   )
 }
 
